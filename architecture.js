@@ -8,7 +8,7 @@ const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
 const deleteAll = document.querySelector('.delete');
-const deleteTop = document.querySelector('.delete__one');
+//const deleteTop = document.querySelector('.delete__one');
 
 class App {
   #map;
@@ -28,11 +28,9 @@ class App {
     inputType.addEventListener('change', this._toggleElevationField);
     containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
     deleteAll.addEventListener('click', this.reset.bind(this));
-    deleteTop.addEventListener('click', this._deletingTop.bind(this));
+    //deleteTop.addEventListener('click', this._deletingTop.bind(this));
     //
     this._setLocalStorage();
-
-   // this._edit();
 
     this._delete(this.workouts);
   }
@@ -148,7 +146,7 @@ class App {
     // Set local storage to all workouts
     this._setLocalStorage();
 
-   //reloading to access local storage memory
+    //reloading to access local storage memory
     location.reload();
   }
 
@@ -170,11 +168,11 @@ class App {
       .openPopup();
   }
 
-  // <button class = workout__edit>EDIT</button>      for future edit button
   _renderWorkout(workout) {
     let html = `
       <li class="workout workout--${workout.type}" data-id="${workout.id}">
-      <button class = "delete">Delete</button>     
+   <button class = "delete">Delete</button>     
+
       <h2 class="workout__title">${workout.description}</h2>
         <div class="workout__details">
           <span class="workout__icon">${
