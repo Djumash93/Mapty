@@ -32,7 +32,9 @@ class App {
     //
     this._setLocalStorage();
 
-    this._edit();
+   // this._edit();
+
+    this._delete(this.workouts);
   }
 
   _getPosition() {
@@ -145,6 +147,9 @@ class App {
 
     // Set local storage to all workouts
     this._setLocalStorage();
+
+   //reloading to access local storage memory
+    location.reload();
   }
 
   _renderWorkoutMarker(workout) {
@@ -169,6 +174,7 @@ class App {
   _renderWorkout(workout) {
     let html = `
       <li class="workout workout--${workout.type}" data-id="${workout.id}">
+      <button class = "delete">Delete</button>     
       <h2 class="workout__title">${workout.description}</h2>
         <div class="workout__details">
           <span class="workout__icon">${
@@ -252,21 +258,28 @@ class App {
     });
   }
 
-  _deletingTop() {
-    this.workouts.splice(-1, 1);
-    localStorage.removeItem('workouts');
-    localStorage.setItem('workouts', JSON.stringify(this.workouts));
-    location.reload();
+  // _deletingTop() {
+  //   this.workouts.splice(-1, 1);
+  //   localStorage.removeItem('workouts');
+  //   localStorage.setItem('workouts', JSON.stringify(this.workouts));
+  //   location.reload();
+  // }
+  _delete(workouts) {
+    if (!this.workouts) return;
+    let id;
+    const workouts2 = document.querySelectorAll('.workout');
+    workouts2.forEach(function (workout) {
+      workout.firstElementChild.addEventListener('click', function () {
+        id = workout.dataset.id;
+        const newWorkouts = workouts.filter(
+          workout1 => Number(workout1.id) != id
+        );
+        localStorage.removeItem('workouts');
+        localStorage.setItem('workouts', JSON.stringify(newWorkouts));
+        location.reload();
+      });
+    });
   }
-  //   _edit() {
-  //     if (!this.workouts) return;
-  //     const workouts2 = document.querySelectorAll('.workout');
-  //     workouts2.forEach(function (workout) {
-  //       workout.firstElementChild.addEventListener('click', function () {
-  //         workout.textContent = '';
-  //       });
-  //     });
-  //   }
   reset() {
     localStorage.removeItem('workouts');
     location.reload();
