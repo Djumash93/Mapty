@@ -1,13 +1,10 @@
-///////////////////////////////////////
-// APPLICATION ARCHITECTURE
-const form = document.querySelector('.form');
 const containerWorkouts = document.querySelector('.workouts');
 const inputType = document.querySelector('.form__input--type');
 const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
-const deleteAll = document.querySelector('.delete');
+const deleteAll = document.querySelector('.delete-all');
 //const deleteTop = document.querySelector('.delete__one');
 
 class App {
@@ -285,3 +282,4 @@ class App {
 }
 
 const app = new App();
+
